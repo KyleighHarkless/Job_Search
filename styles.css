@@ -21,10 +21,6 @@ p {
   text-shadow: rgb(5, 13, 3) 0.2em 0.2em 0.3em;
 }
 
-.red-arrow {
-  img;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
