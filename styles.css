@@ -4,22 +4,32 @@ body {
   background-size: 100% 350%;
   background-position: center;
   text-align: center;
-  text-shadow: rgb(5, 13, 3) 0.2em 0.2em 0.5em;
-  
- .boxed-text {
+}
+
+.boxed-text {
   border: 2px solid black;  /* adds the box */
   padding: 8px;             /* space between text and border */
   display: inline-block;    /* makes the box fit the text */
   background-color: white;  /* optional, makes it pop out */
-} 
 }
 
 h1 {
   color: black;
   text-align: center;
+  font-size: 40px;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 5s ease-in-out;
+} 
 
 p {
   font-family: verdana;
   font-size: 20px;
+  text-shadow: rgb(5, 13, 3) 0.2em 0.2em 0.3em;
 }
