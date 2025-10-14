@@ -1,10 +1,18 @@
-html {
+.background2 {
+  background-image: url('scary_forest.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 350%;
+  background-position: center;
+  height: 60%;
+}
+.background1 {
   background-image: url('forest_background.jpg');
   background-repeat: no-repeat;
   background-size: 100% 350%;
   background-position: center;
   height: 60%;
 }
+
 body {  
   text-align: center;
 }
