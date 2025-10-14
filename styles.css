@@ -17,12 +17,10 @@
 .background3 {
   background-image: url('man_holding_fish.jpg');
   background-repeat: no-repeat;
-  background-size: 100% 350%;
-  background-position: center;
-  height: 60%;
+  background-size: 100% 250%;
+  background-position: top center;
+  height: 50%;
 }
-
-
 
 body {  
   text-align: center;
@@ -33,10 +31,15 @@ h1 {
   text-align: center;
   font-size: 40px;
 }
+h2 {
+  color: white;
+  text-align: center;
+  font-size: 40px;
+}
 
 p {
   font-family: verdana;
-  font-size: 20px;
+  font-size: 30px;
   text-shadow: rgb(5, 13, 3) 0.2em 0.2em 0.3em;
 }
 
@@ -47,8 +50,10 @@ p2 {
 }
 
 p3 {
-  font-family: fantasy;
-  font-size: 30px;
+  font-family:'comic sans ms', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: blueviolet;
 }
 
 
