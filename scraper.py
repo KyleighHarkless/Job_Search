@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from csv import writer
+import random
+from datetime import datetime
 
 def main():
     welcome_text()
@@ -23,7 +25,7 @@ def add_jobs_to_csv (jobs_data, job_file):
             title = job.find("h2", class_="title").get_text(strip=True)
             company = job.find("h3", class_="company").get_text(strip=True)
             location = job.find("p", class_="location").get_text(strip=True)
-            date_posted = job.find("time")["datetime"]
+            date_posted = random_date()
             csv_writer.writerow([title, company, location, date_posted])
 
 def scrape_website(url, element, class_name = None):
@@ -48,6 +50,12 @@ def scrape_website(url, element, class_name = None):
 def strip_text(scraped_text):
     for text in scraped_text:
         print(text.get_text(strip=True))
+
+def random_date():
+    random_year = random.randint(1999, datetime.now().year)
+    random_month = random.randint(1, 12)
+    random_day = random.randint(1, 31)
+    return f"{random_year}-{random_month:02d}-{random_day:02d}"
     
 def welcome_text():
     underscores = "_" * len(">> This is a program or tool that automatically extracts data from websites by parsing the underlying HTML code <<")
@@ -75,8 +83,6 @@ def welcome_text():
         "\t\t (_,_)  (_,_)  (_,_)  (_,_)  (_,_)  (_,_)  (_,_)  (_,_)  (_,_)  (_,_) \n"
     )
     print(f">> This is a program or tool that automatically extracts data from websites by parsing the underlying HTML code << \n{underscores}")
-
-
 
 if __name__ == "__main__":
     main()

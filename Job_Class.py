@@ -6,4 +6,4 @@ class Job_Class:
         self.date_posted = date_posted
 
     def __repr__(self):
-        return f"Job({self.title}, {self.company}, {self.location}, {self.date_posted})"
+        return f"{self.title} \nCompany: {self.company} \nLocation: {self.location}\nDate Posted: {self.date_posted} \n"
