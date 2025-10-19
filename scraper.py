@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from csv import writer
-import csv
 
 def main():
     welcome_text()
@@ -12,13 +11,15 @@ def main():
     print(f"\nUtah State's Mission Statement:")
     strip_text(scrape_website("https://www.usu.edu/president/mission-statement/", "p", "lead"))
 
-    # ---- Fake job listings ----
-    job_data = scrape_website("https://realpython.github.io/fake-jobs/", "div", "card-content")
-    with open("fake_jobs.csv", "w") as f:
+    scraped_jobs = scrape_website("https://realpython.github.io/fake-jobs/", "div", "card-content")
+    add_jobs_to_csv(scraped_jobs, "fake_jobs.csv")
+    
+def add_jobs_to_csv (jobs_data, job_file):
+    with open(job_file, "w") as f:
         csv_writer = writer(f)
         csv_writer.writerow(["Title", " Company", " Location", " Date Posted"])
 
-        for job in job_data:
+        for job in jobs_data:
             title = job.find("h2", class_="title").get_text(strip=True)
             company = job.find("h3", class_="company").get_text(strip=True)
             location = job.find("p", class_="location").get_text(strip=True)
@@ -39,7 +40,7 @@ def scrape_website(url, element, class_name = None):
         if scraped_text:
             return scraped_text
         else:
-            return "Statement not found."
+            return "Nothing found."
 
     except Exception as e:
         return (f"An error occurred while scraping the website: {e}")
