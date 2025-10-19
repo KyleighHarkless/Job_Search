@@ -7,31 +7,32 @@ def main():
 
     choice = input("Job Search: \n(1) View all jobs postings\n"
     "(2) View most recent job postings \n"
-    "(3) Search jobs by keyword and location? \n" \
+    "(3) Search jobs by keyword and location \n" \
     "Enter 1, 2, or 3: ")
 
     job_menu(choice, available_jobs)
 
 def job_menu(choice: str, jobs_list: list):
     if choice == "1":
-        for job in jobs_list:
-            print(job)
+        print_jobs(jobs_list)
 
     elif choice == "2":
-        ordered_jobs = order_jobs_by_date(jobs_list)
-        for job in ordered_jobs:
-            print(job)
+        ordered = jobs_from_current_year(jobs_list)
+        print_jobs(ordered)
 
     elif choice == "3":
         keyword = input("Enter keyword to search for: ")
         location = input("Enter location to search for: ")
         search_results = search_jobs(jobs_list, keyword, location)
-        for job in search_results:
-            print(job)
+        print_jobs(search_results)
 
     else:
         print("Invalid choice. Please enter 1, 2, or 3.")
 
+def print_jobs(jobs_list: list):
+    print(f"\n{len(jobs_list)} job posting(s) found:\n----------------------")
+    for job in jobs_list:
+        print(job)
 
 def create_jobs_list(filename: str):
     list_of_jobs = []
@@ -51,17 +52,15 @@ def create_jobs_list(filename: str):
     except FileNotFoundError:
         print("Could not find file.")
 
-def order_jobs_by_date(jobs_list: list):
+def jobs_from_current_year(jobs_list: list):
     most_recent = []
     sorted_by_date = sorted(jobs_list, key=lambda job: job.date_posted, reverse=True)
 
     for job in sorted_by_date:
-        if job.date_posted[:4] == datetime.now().year:
+        if job.date_posted[:4] == str(datetime.now().year):
             most_recent.append(job)
 
     return most_recent
-
-
 
 def search_jobs(jobs_list: list, keyword: str, location: str):
     results = []
